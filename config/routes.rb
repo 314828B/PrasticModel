@@ -1,18 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/show'
-    get 'items/edit'
-  end
 #会員側
 devise_for :customers, skip: :all
 devise_scope :customer do
