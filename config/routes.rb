@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+  end
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
+  namespace :admin do
+    get 'items/index'
+    get 'items/show'
+    get 'items/edit'
+  end
 #会員側
 devise_for :customers, skip: :all
 devise_scope :customer do
@@ -51,15 +65,14 @@ end
   get 'search/search'
   get '/search', to: 'search#search'
 
-namespace :Public do
+namespace :public do
     resources :items
-    resources :comments
     resources :customers
-    resources :favorites
-    resources :homes
+    resources :comments
     resources :relationships
-    resources :searchs
+    resources :favorites
 end
+
 
 namespace :admin do
     resources :items
@@ -74,6 +87,4 @@ end
     #passwords: 'admins/passwords',
     #registrations: 'admins/registrations'
 #}
-
-end
 end
