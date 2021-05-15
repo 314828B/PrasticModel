@@ -2,21 +2,17 @@ Rails.application.routes.draw do
 
 devise_for :customers, controllers: {  #会員側
         sessions: 'public/devise/sessions',
+        passwords: 'public/devise/passwords',
         registrations: 'public/devise/registrations'
       }
 
 devise_for :admins, controllers: {     #管理者側
         sessions: 'admin/devise/sessions',
+        passwords: 'admin/devise/passwords',
         registrations: 'admin/devise/registrations'
       }
 
-
-resources :customers do
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
-end
-
-  root to: 'public/homes#top'
+  #root to: 'public/homes#top'
 
   # resources :items do
   #   resource :favorites, only: [:create, :destroy]
@@ -34,12 +30,16 @@ end
   get 'search/search'
   get '/search', to: 'search#search'
 
-namespace :public do
+ scope module: :public do
     resources :items
-    resources :customers
+    resources :customers do
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     resources :comments
     resources :relationships
     resources :favorites
+    root to: 'homes#top'
 end
 
 
@@ -47,6 +47,7 @@ namespace :admin do
     resources :items
     resources :genres
     resources :customers
+    resources :homes
 end
 
 end

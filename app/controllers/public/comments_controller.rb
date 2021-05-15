@@ -1,7 +1,6 @@
 class Public::CommentsController < ApplicationController
   def create
     item = Item.find(params[:item_id])
-
       comment = current_customer.comments.new(comment_params)
       comment.item_id = item.id
       comment.save

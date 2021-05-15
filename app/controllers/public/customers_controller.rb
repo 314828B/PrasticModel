@@ -1,10 +1,21 @@
 class Public::CustomersController < ApplicationController
+  
+  def index
+  @customer = @customer = Customer.find(params[:id])
+  end
+
   def show
     @customer = Customer.find(params[:id])
+    @item = Item.new
+    @items = @customer.items
   end
 
   def edit
     @customer = Customer.find(params[:id])
+    #@customer_image = Csutomer.new
+    if current_customer.id != @customer.id
+      redirect_to customer_path(current_customer)
+    end
   end
 
   def update
@@ -34,6 +45,6 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-	  params.require(:customer).permit(:name, :kana_name, :email, :is_deleted)
+	  params.require(:customer).permit(:name, :kana_name, :email, :is_deleted, :image)
   end
 end

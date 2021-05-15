@@ -1,0 +1,34 @@
+<p id="notice"></p>
+  <div class="container px-5 px-sm-0">
+
+    <div class="row">
+      <div class="col-md-3">
+       <%= render 'public/customers/info',customer:@customer,item:@item %>
+      </div>
+      <div class="col-md-8 offset-md-1">
+            <h2>プラモデル</h2>
+            <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>プラモデル名</th>
+            <th>プラモデル概要</th>
+            <th>プラモデル写真</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+          <% @items.each do |item| %>
+            <tr>
+               <td><%= link_to customer_path(customer.customer.id) do  %>
+               <%= attachment_image_tag customer, :image, size: "50x50" %>
+              <% end %></td>
+
+              <td><%= link_to item.name,item_path(item.id) %></td>
+              <td><%= item.introduction %></td>
+              <td>コメント件数：<%= item.comments.count %></td>
+            </tr>
+          <% end %>
+            </table>
+      </div>
+    </div>
+</div>

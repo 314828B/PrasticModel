@@ -1,2 +1,25 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+  
+  <div class = "col-2 my-5 title" >
+    <h4>ジャンル編集</h4>
+  </div>
+  
+      <% if @genre.errors.any? %>
+        <%= @genre.errors.count %>errors prohibited this obj from being saved:</br>
+        <% @genre.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      <%= form_with model: @genre, url: admin_genre_path(@genre.id), local:true do |f| %>
+        
+        <table class="table table-borderless col-7">
+          <tr>
+            <th><%= f.label :ジャンル名 %></th>
+            <td><%= f.text_field :name, autofocus: true, id:"genre_name" %></td>
+            <td><%= f.submit "変更を保存", class: 'btn btn-success' %></td>
+        </table>
+        
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-    has_many :items, dependent: :destroy
+  has_many :items, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -34,7 +34,7 @@ class Customer < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && (is_deleted == false)
+    super && (is_deleted != true)
   end
 
   def self.search(search,word)
@@ -55,4 +55,5 @@ class Customer < ApplicationRecord
   attachment :profile_image
   validates :name, presence: true,uniqueness: true
   validates :name,    length: { in: 2..20 }
+  attachment :image
 end

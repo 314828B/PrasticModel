@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_084115) do
 
   create_table "comments", force: :cascade do |t|
     t.text "commnet"
+    t.integer "customer_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_084115) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_084115) do
     t.string "name"
     t.text "introduction"
     t.string "image_id"
+    t.integer "genre_id"
+    t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

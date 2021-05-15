@@ -1,4 +1,5 @@
 class Public::SerchesController < ApplicationController
+  
   def search
     @genre = Genre.find(params[:genre_id])
     @items = @genre.items.page(params[:page]).per(8)

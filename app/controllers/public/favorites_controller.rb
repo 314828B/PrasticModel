@@ -4,7 +4,7 @@ class Public::FavoritesController < ApplicationController
     favorite = current_customer.favorites.new(item_id: @item.id)
       favorite.save
         @customer = current_customer
- end
+  end
 
   def destroy
     @item = Item.find(params[:item_id])

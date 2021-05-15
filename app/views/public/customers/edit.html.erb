@@ -1,0 +1,37 @@
+<div class="container">
+  
+  <div class = "col-2 my-5 title" >
+    <h4>会員情報編集</h4>
+  </div>
+
+<%= form_with model: @customer, url: customer_path, local:true do |f| %>
+
+  <table class="table table-borderless">
+    <tr>
+      <th><%= f.label :氏名 %></th>
+      <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %>&emsp;</td>
+    </tr>
+    <tr>
+      <th><%= f.label :フリガナ %></th>
+      <td><%= f.text_field :kana_name, autofocus: true, autocomplete: "kana_name" %>&emsp;</td>
+    </tr>
+    <tr>
+      <th><%= f.label :メールアドレス %></th>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :プロフィール画像 %></td>
+      <td><%= f.attachment_field :image %></td>
+    </tr>
+      
+    <tr>
+      <td></td>
+      <td>
+        <div class="actions">
+          <%= f.submit "編集内容を保存" ,class:"btn btn-success" %>&emsp;&emsp;&emsp;<%= link_to "退会する" ,quit_path ,class:"btn btn-danger" %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>
+</div>

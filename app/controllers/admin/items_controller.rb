@@ -1,30 +1,45 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @customers = Customer.page(params[:page]).per(10)
+    @items = Item.page(params[:page]).per(10)
   end
 
-  def show
-    @customer = Customer.find(params[:id])
+  def new
+    @item = Item.new
   end
 
-  def edit
-    @customer = Customer.find(params[:id])
-  end
-
-  def update
-    @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    if @customer.save
-      flash[:notice] = "You have updted customer successfully."
-      redirect_to admin_customer_path(@customer.id)
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:notice] = "You have created item successfully."
+      redirect_to admin_item_path(@item)
     else
-      render :edit
+    # @items = Item.all
+     render :new
     end
   end
 
-    private
-
-  def customer_params
-    params.require(:customer).permit(:name,:kana_name,:email,:is_deleted)
+  def show
+    @item = Item.find(params[:id])
   end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if  @item.update(item_params)
+        flash[:notice] = "You have updated item successfully."
+        redirect_to admin_item_path(@item)
+    else
+        render :edit
+    end
+  end
+
+  private
+
+  def item_params
+   params.require(:item).permit(:image, :name, :introduction, :genre_id,　:image)
+  end
+
 end

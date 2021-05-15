@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
-  belongs_to :genre
-  belongs_to :customer
+  belongs_to :genre, optional: true
+  belongs_to :customer, optional: true
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+  def favorited_by?(customer)
+    favorites.where(customer_id: customer.id).exists?
   end
 
   def self.search(search, word)

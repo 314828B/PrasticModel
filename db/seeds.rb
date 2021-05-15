@@ -9,3 +9,6 @@ Admin.create!(
   email: 'admin@admin',
   password: 'adminadmin',
 )
+["戦車","艦戦","飛行機"].each do |name|
+  Genre.create!(name:name)
+end

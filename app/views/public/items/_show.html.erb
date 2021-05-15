@@ -1,0 +1,17 @@
+<% item.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.customer.name %></td>
+        <td>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <%= comment.comment %>
+        </td>
+
+         <% if comment.customer == current_customer %>
+            <div class="comment-delete">
+              <td>
+                  <%= link_to "削除", item_comment_path(comment.item, comment), method: :delete ,remote:true%>
+              </td>
+            </div>
+        <% end %>
+      </tr>
+<% end %>
