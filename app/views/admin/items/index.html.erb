@@ -11,18 +11,19 @@
           <tr>
             <th>プラモデル名</th>
             <th>ジャンル</th>
+            <th>プラモデル写真</th>
           </tr>
         </thead>
         <tbody>
           <% @items.each do |item| %>
             <tr>
-              <th><%= item.id %></th>
               <th>
                 <%= link_to admin_item_path(item.id) do %>
                   <%= item.name %>
                 <% end %>
               </th>
               <th><%= item.genre.name %></th>
+              <th><%= attachment_image_tag item, :image, size: "90x90" %></th>
             </tr>
           <% end %>
         </tbody>
