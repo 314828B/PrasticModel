@@ -19,12 +19,13 @@
         </thead>
           <% @items.each do |item| %>
             <tr>
-               <td><%= link_to customer_path(customer.customer.id) do  %>
-               <%= attachment_image_tag customer, :image, size: "50x50" %>
+               <td><%= link_to customer_path(item.customer.id) do  %>
+               <%= attachment_image_tag @customer, :image, size: "50x50" %>
               <% end %></td>
 
               <td><%= link_to item.name,item_path(item.id) %></td>
               <td><%= item.introduction %></td>
+              <td> <%= attachment_image_tag item, :image, size: "100x80" %></td>
               <td>コメント件数：<%= item.comments.count %></td>
             </tr>
           <% end %>

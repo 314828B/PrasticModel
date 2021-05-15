@@ -26,7 +26,6 @@ devise_for :admins, controllers: {     #管理者側
   get '/customer/:id/quit' => 'customers#quit', as: 'quit'
   # 論理削除用のルーティング
   patch '/customer/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
-
   get 'search/search'
   get '/search', to: 'search#search'
 

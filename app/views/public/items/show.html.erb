@@ -10,16 +10,16 @@
   		      <table class="table">
   		        <thead>
   		          <tr>
-  		            <td><%= attachment_image_tag @customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br>
-  		            <%= link_to @customer.name, user_path(@customer.id) %></td>
-  		            <td><%= link_to @item.name, book_path(@item.id) %></td>
+  		            <td><%#= attachment_image_tag @customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br>
+  		            <%= link_to @customer.name, customer_path(@customer.id) %></td>
+  		            <td><%= link_to @item.name, item_path(@item.id) %></td>
   		            <td><%= @item.introduction %></td>
   		            <% if current_customer.id == @customer.id %>
   		            <td><%= link_to"Edit", edit_customer_path(@customer.id),class:'btn btn-sm btn-success' %></td>
   		            <td><%= link_to"Destroy" , item_path(@item.id), method: :delete, "data-confirm" =>"本当に消しますか？",class:'btn btn-sm btn-danger' %></td>
   		            <% end %>
   		           <td class =  <%= "item_favorite_#{@item.id}"  %> >
-  		             <%= render 'items/favorite', item:@item, customer:current_customer %>
+  		             <%= render 'public/items/favorite', item:@item, customer:current_customer %>
                 </td>
   		          </tr>
   		        </thead>
@@ -28,7 +28,7 @@
               <p>コメント件数：<%= @item.comments.count %></p>
 
               <table class="comment_table table">
-               <%= render 'items/show', item,:@item %>
+               <%= render 'public/items/show', item:@item %>
               </table>
             </div>
             <div class="new-comment">
