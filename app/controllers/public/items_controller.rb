@@ -1,6 +1,5 @@
 class Public::ItemsController < ApplicationController
   def index
-    #byebug
     @items = Item.all.page(params[:page]).per(8)
     @item_amount = Item.count
     @item = Item.new

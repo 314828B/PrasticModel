@@ -17,7 +17,7 @@
       <h5>新着投稿プラモデル</h5>
       </div>
       <div class="offset-8">
-      <%= form_with url: serch_serch_path, method: :get, local: true do |f| %>
+      <%= form_with url: genre_search_path, method: :get, local: true do |f| %>
         <%= f.collection_select(:genre_id, Genre.all, :id, :name ) %>
         <%= f.submit '検索' %>
       <% end %>
@@ -28,7 +28,7 @@
     <div class="row" >
         <div class="col-2">
       　</div>
-
+<% if customer_signed_in? %>
       <% @items.each do |item| %>
         <div class="col-2">
         <div>
@@ -39,14 +39,21 @@
           <p><%= item.name %></p>
         </div>
       <% end %>
+  <% else %>
+      <% @items.each do |item| %>
+            <div class="col-2">
+            <div>
+              <%= attachment_image_tag item, :image, size: "150x150" %>
+            </div>
+              <p><%= item.name %></p>
+            </div>
+      <% end %>
+  <% end %>
          <div class="col-2">
          </div>
     </div>
       <div class="offset-9">
       <%= link_to "全てのプラモデルをみる", items_path %>
       </div>
-
-
-
   </div>
 </div>

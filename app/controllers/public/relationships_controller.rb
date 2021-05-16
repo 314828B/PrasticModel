@@ -1,7 +1,7 @@
 class Public::RelationshipsController < ApplicationController
  def create
     @customer = Customer.find(params[:followed_id])
-    following = current_user.follow(@customer)
+    following = current_customer.follow(@customer)
     if following.save
       flash[:success] = 'ユーザーをフォローしました'
       redirect_to request.referer
@@ -13,7 +13,7 @@ class Public::RelationshipsController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:followed_id])
-    following = current_user.unfollow(@customer)
+    following = current_customer.unfollow(@customer)
     if following.destroy
       flash[:success] = 'ユーザーのフォローを解除しました'
       redirect_to request.referer

@@ -10,8 +10,8 @@
   		      <table class="table">
   		        <thead>
   		          <tr>
-  		            <td><%#= attachment_image_tag @customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br>
-  		            <%= link_to @customer.name, customer_path(@customer.id) %></td>
+  		            <td><%= attachment_image_tag @customer, :image, size: "50x50" %><br>
+  		            &emsp;<%= link_to @customer.name, customer_path(@customer.id) %></td>
   		            <td><%= link_to @item.name, item_path(@item.id) %></td>
   		            <td><%= @item.introduction %></td>
   		            <% if current_customer.id == @customer.id %>
@@ -32,8 +32,9 @@
               </table>
             </div>
             <div class="new-comment">
-            <%= form_with(model:[@item, @comment]) do |f| %>
-              <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+            <%= form_with(model:[@comment]) do |f| %>
+              <%= f.text_area :comment, rows:'10',placeholder: "コメントをここに" %>
+               <%= f.hidden_field :customer_id, :value => @customer.id %>
               <%= f.submit "送信する" %>
             <% end %>
             </div>

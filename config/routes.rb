@@ -23,11 +23,11 @@ devise_for :admins, controllers: {     #管理者側
 
 
   # 退会確認画面
-  get '/customer/:id/quit' => 'customers#quit', as: 'quit'
+  get '/customer/:id/quit' => 'public/customers#quit', as: 'quit'
   # 論理削除用のルーティング
-  patch '/customer/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
-  get 'serch/serch'
-  get '/serch', to: 'serch#serch'
+  patch '/customer/:id/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+  get '/search', to: 'public/searches#search', as: 'search'
+  get '/genre_search', to: 'public/searches#genre_search', as: 'genre_search'
 
  scope module: :public do
     resources :items
@@ -37,7 +37,9 @@ devise_for :admins, controllers: {     #管理者側
     end
     resources :comments
     resources :relationships
-    resources :favorites
+    #resources :favorites
+    post '/favorites/:id' => 'favorites#create', as: 'favorit'
+    delete '/favorites/:id' => 'favorites#destroy', as: 'an_favorit'
     root to: 'homes#top'
 end
 
