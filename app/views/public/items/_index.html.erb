@@ -1,10 +1,10 @@
 <% items.each do |item| %>
 	<tr>
 	  <td><%= link_to customer_path(item.customer.id) do  %>
-	  <%= attachment_image_tag @customer, :image, size: "50x50" %>
+	  <%= attachment_image_tag customer, :image, size: "50x50" %>
 	  <% end %></td>
-		<td><%= link_to item.name,item_path(item.id) %></td>
-		<td><%= item.introduction %></td>
+		<td><%= link_to item.name.truncate(8),item_path(item.id) %></td>
+		<td><%= item.introduction.truncate(8) %></td>
 		<td><%= attachment_image_tag item, :image, size: "50x50" %></td>
 		<td><%= item.genre.name %></td>
 		<td><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></td>

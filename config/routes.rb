@@ -30,12 +30,13 @@ devise_for :admins, controllers: {     #管理者側
   get '/genre_search', to: 'public/searches#genre_search', as: 'genre_search'
 
  scope module: :public do
-    resources :items
+    resources :items do
+      resources :comments
+    end
     resources :customers do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    resources :comments
     resources :relationships
     #resources :favorites
     post '/favorites/:id' => 'favorites#create', as: 'favorit'

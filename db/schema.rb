@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_084115) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "commnet"
+    t.text "comment"
+    t.float "rate", default: 0.0, null: false
     t.integer "customer_id"
     t.integer "item_id"
     t.datetime "created_at", null: false

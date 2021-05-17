@@ -17,7 +17,7 @@
                   <th>ジャンル</th>
                   <th colspan="3"></th>
                 </tr>
-          <%= render 'public/items/index',items:@items %>
+          <%= render 'public/items/index',items:@items,customer:@customer %>
               <div class="comments">
               <p>コメント件数：<%= @item.comments.count %></p>
               <table class="table">
