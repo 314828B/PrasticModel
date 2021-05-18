@@ -41,6 +41,10 @@ devise_for :admins, controllers: {     #管理者側
     #resources :favorites
     post '/favorites/:id' => 'favorites#create', as: 'favorit'
     delete '/favorites/:id' => 'favorites#destroy', as: 'an_favorit'
+    resources :contacts, only: [:new, :create]
+      post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+      post 'contacts/back', to: 'contacts#back', as: 'back'
+      get 'done', to: 'contacts#done', as: 'done'
     root to: 'homes#top'
 end
 

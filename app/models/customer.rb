@@ -17,6 +17,7 @@ class Customer < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
+  has_many :liked_items, through: :favorites, source: :item
 
   def follow(other_customer)
     unless self == other_customer

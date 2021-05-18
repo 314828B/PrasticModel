@@ -1,6 +1,14 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all.page(params[:page]).per(8)
+    case params[:tab_no]
+      when "1" then
+        items = Item.includes(:liked_customers).sort {|a,b| b.liked_customers.size <=> a.liked_customers.size}
+        @items = Kaminari.paginate_array(items).page(params[:page]).per(8)
+      when "2" then
+        @items = Item.all.order(created_at: "DESC").page(params[:page]).per(8)
+      else
+        @items = Item.all.page(params[:page]).per(8)
+    end
     @item_amount = Item.count
     @item = Item.new
     @customer = current_customer
@@ -62,5 +70,4 @@ class Public::ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:name, :introduction, :image, :genre_id)
     end
-
 end

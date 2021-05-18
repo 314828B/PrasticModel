@@ -17,7 +17,19 @@
                   <th>ジャンル</th>
                   <th colspan="3"></th>
                 </tr>
-          <%= render 'public/items/index',items:@items,customer:@customer %>
+
+              <div class="nav justify-content-center">
+                <li class="nav-item">
+                  <%= link_to "いいねランキング順", items_path(tab_no: 1), class: "nav-link active" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新着プラモデル", items_path(tab_no: 2), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "評価順", items_path, class: "nav-link disabled" %>
+                </li>
+              </div>
+          <%= render 'public/items/index',items:@items,customer:@customer,comment:@comment %>
               <div class="comments">
               <p>コメント件数：<%= @item.comments.count %></p>
               <table class="table">
@@ -59,4 +71,3 @@
     </div>
   </div>
   <% end %>
-  
