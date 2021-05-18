@@ -40,9 +40,10 @@
     <div class = "col-2 my-5" >
       <p>(全<%= @item_amount %>件)</p>
     </div>
+    
     <div class = "row" >
       <% @items.each do |item|  %>
-        <div class="col-7">
+        <div class="col-2 mx-auto">
           <div>
             <%= attachment_image_tag item, :image, size: "180x120" %>
           </div>
