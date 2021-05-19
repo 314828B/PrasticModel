@@ -8,6 +8,18 @@
 		<td><%= attachment_image_tag item, :image, size: "50x50" %></td>
 		<td><%= item.genre.name %></td>
 		 <!--星評価-->
+		 <td><div id="star-rate-<%=item.id%>"></td>
+		 <script>
+          $('#star-rate-<%= item.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @rate_average[item.id] %>,
+          });
+          </script>
 		<td><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></td>
     <td class =  <%= "item_favorite_#{item.id}"  %> >
        <%= render 'public/items/favorite', item: item, customer: current_customer %>

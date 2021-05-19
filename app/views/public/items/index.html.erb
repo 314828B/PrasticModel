@@ -26,12 +26,12 @@
                   <%= link_to "新着プラモデル", items_path(tab_no: 2), class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "評価順", items_path, class: "nav-link disabled" %>
+                  <%= link_to "プラモデル古い順", items_path, class: "nav-link disabled" %>
                 </li>
               </div>
           <%= render 'public/items/index',items:@items,customer:@customer,comment:@comment %>
               <div class="comments">
-              <p>コメント件数：<%= @item.comments.count %></p>
+              <p>投稿件数：<%= @item_amount %></p>
               <table class="table">
                 <% @item.comments.each do |comment| %>
                   <tr>
@@ -44,29 +44,32 @@
       </div>
   </div>
   <% else %>
-  <div class = "container">
+<div class = "container">
     <div class = "row">
-    <div class = "col-4 my-5 title" >
-      <% if @genre==0 %>
-        <h4 class = "" >プラモデル一覧</h4>
-      <% else %>
-        <h4><%= @genre.name %>一覧</h4>
-      <% end %>
+      <div class = "col-4 my-5 title" >
+        <% if @genre==0 %>
+          <h4 class = "" >プラモデル一覧</h4>
+        <% else %>
+          <h4><%= @genre.name %>一覧</h4>
+        <% end %>
+      </div>
+      <div class = "col-2 my-5" >
+        <p>(全<%= @item_amount %>件)</p>
+      </div>
     </div>
-    <div class = "col-2 my-5" >
-      <p>(全<%= @item_amount %>件)</p>
-    </div>
-    
-     <div class="row" >
-       <!--プラモデル表示用に記載-->
-      <% @items.each do |item| %>  　
-        <div class="col-auto my-5 mx-auto">
-          <div>
-              <%= attachment_image_tag item, :image, size: "150x150" %>
+  </div>
+      <div class = "row" >
+        <% @items.each do |item|  %>
+          <div class="col-2 mx-3">
+            <div>
+              <%= attachment_image_tag item, :image, size: "180x120" %>
+            </div>
+            <p><%= item.name %></p>
           </div>
-          <p><%= item.name %></p>
-        </div>
-      <% end %>
-      <div class = "my-auto mx-auto"><%= paginate @items %></div>
+        <% end %>
+      </div>
+    <div class = "row" >
+      <div class = "my-5 mx-auto"><%= paginate @items %></div>
+    </div>
   </div>
   <% end %>

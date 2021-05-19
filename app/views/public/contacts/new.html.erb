@@ -1,3 +1,8 @@
+<div class="container col-6 px-5 offset-auto">
+<div class= "row">
+<div class="col-md-8">
+<h2>お問い合わせフォーム</h2>
+</div>
 <%= form_for(@contact, url: confirm_path) do |f| %>
   <div class="form-group">
     <%= f.label :name, 'お名前*' %>
@@ -13,3 +18,5 @@
     <%= f.submit '入力内容確認' %>
   </div>
 <% end %>
+</div>
+</div>

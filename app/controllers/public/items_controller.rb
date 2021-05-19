@@ -8,12 +8,14 @@ class Public::ItemsController < ApplicationController
         @items = Item.all.order(created_at: "DESC").page(params[:page]).per(10)
       else
         @items = Item.all.page(params[:page]).per(10)
+        #@items = Comment.order(rate: :desc)
     end
     @item_amount = Item.count
     @item = Item.new
     @customer = current_customer
     @genres = Genre.all
     @genre = 0
+    @rate_average = Item.left_joins(:comments).group(:id).average(:rate)
   end
 
   def show
