@@ -25,9 +25,6 @@
                 <li class="nav-item">
                   <%= link_to "新着プラモデル", items_path(tab_no: 2), class: "nav-link" %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "プラモデル古い順", items_path, class: "nav-link disabled" %>
-                </li>
               </div>
           <%= render 'public/items/index',items:@items,customer:@customer,comment:@comment %>
               <div class="comments">

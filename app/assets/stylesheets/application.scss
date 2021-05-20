@@ -17,7 +17,19 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-.mb-auto {
-  background-image: url(image_50402817.jpg);
-  background-size:  cover;  
+.test {
+  background-image: url(robert-stemler-VtMdZFGCWuI-unsplash.jpg);
+  background-size:  cover;
+  display        : inline-block;
+  color          : #999999;           /* 文字の色 */              /* 文字のサイズ */
+  letter-spacing : 4px;
+  text-shadow    :
+       1px  1px 0px #ffffff,
+      -1px  1px 0px #ffffff,
+       1px -1px 0px #ffffff,
+      -1px -1px 0px #ffffff,
+       1px  0px 0px #ffffff,
+       0px  1px 0px #ffffff,
+      -1px  0px 0px #ffffff,
+       0px -1px 0px #ffffff;
 }
