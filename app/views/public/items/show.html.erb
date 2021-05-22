@@ -24,6 +24,8 @@
   		          </tr>
   		        </thead>
   		      </table>
+  		      <h4>プラモデル写真</h4>
+  		      <div><%= attachment_image_tag @item, :image, size: "400x400" %></div>
   		      <div class="comments">
               <p>コメント件数：<%= @item.comments.count %></p>
 
@@ -50,7 +52,7 @@
                 scoreName: 'comment[rate]',
                 half: true,
               });
-            </script>  
+            </script>
             </div>
         </div>
       </div>
