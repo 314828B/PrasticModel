@@ -1,0 +1,62 @@
+<% if customer_signed_in? %>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-4 my-5 title" >
+        <% if @genre==0 %>
+          <h4 class = "" >プラモデル一覧</h4>
+        <% else %>
+          <h4><%= @genre.name %>一覧</h4>
+        <% end %>
+      </div>
+      <div class = "col-2 my-5" >
+        <p>(全<%= @item_amount %>件)</p>
+      </div>
+    </div>
+  </div>
+      <div class = "row" >
+        <% @items.each do |item|  %>
+          <div class="col-2 mx-5">
+            <div>
+              <%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, size: "180x120" %>
+              <% end %>
+            </div>
+            <p><%= item.name %></p>
+          </div>
+        <% end %>
+      </div>
+    <div class = "row" >
+      <div class = "my-5 mx-auto"><%= paginate @items %></div>
+    </div>
+  </div>
+
+<% else %>
+<div class = "container">
+    <div class = "row">
+      <div class = "col-4 my-5 title" >
+        <% if @genre==0 %>
+          <h4 class = "" >プラモデル一覧</h4>
+        <% else %>
+          <h4><%= @genre.name %>一覧</h4>
+        <% end %>
+      </div>
+      <div class = "col-2 my-5" >
+        <p>(全<%= @item_amount %>件)</p>
+      </div>
+    </div>
+  </div>
+      <div class = "row" >
+        <% @items.each do |item|  %>
+          <div class="col-2 mx-3">
+            <div>
+              <%= attachment_image_tag item, :image, size: "180x120" %>
+            </div>
+            <p><%= item.name %></p>
+          </div>
+        <% end %>
+      </div>
+    <div class = "row" >
+      <div class = "my-5 mx-auto"><%= paginate @items %></div>
+    </div>
+  </div>
+  <% end %>

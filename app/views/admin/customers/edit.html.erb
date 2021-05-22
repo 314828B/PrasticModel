@@ -1,0 +1,47 @@
+<div class = "container">
+
+<div class = "col-4 my-5 title" >
+  <h4><%= @customer.name %>さんの会員情報編集</h4>
+</div>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer.id), local:true do |f| %>
+
+<table class="table table-borderless">
+  <tr>
+    <th>会員ID</th>
+    <td><%= @customer.id %></td>
+  </tr>
+    <tr>
+      <th><%= f.label :氏名 %></th>
+      <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %>&emsp;</td>
+    </tr>
+    <tr>
+      <th><%= f.label :フリガナ %></th>
+      <td><%= f.text_field :kana_name, autofocus: true, autocomplete: "kana_name" %>&emsp;</td>
+    </tr>
+    <tr>
+      <th><%= f.label :メールアドレス %></th>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <th>退会ステータス</th>
+      <td>
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_deleted, :ture %>
+        <%= f.label :is_deleted, "退会", {value: :ture, style: "display: inline-block;"} %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+      <div class="actions">
+        <%= f.submit "変更を保存" ,class:"btn btn-success" %>
+      </div>
+      </td>
+    </tr>
+</table>
+
+<% end %>
+
+</div>

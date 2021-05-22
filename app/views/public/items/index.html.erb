@@ -1,0 +1,72 @@
+ <p id="notice"></p>
+<% if customer_signed_in? %>
+  <div class="container px-5 px-sm-0">
+      <div class="row">
+        <div class="col-md-3">
+          <%= render 'public/customers/info',customer:@customer,item:@item %>
+        </div>
+            <div class="col-md-8 offset-md-1">
+              <h2>プラモデル</h2>
+              <table class="table table-hover table-inverse">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>名前</th>
+                  <th>プラモデル説明</th>
+                  <th>写真</th>
+                  <th>ジャンル</th>
+                  <th colspan="3"></th>
+                </tr>
+
+              <div class="nav justify-content-center">
+                <li class="nav-item">
+                  <%= link_to "いいねランキング順", items_path(tab_no: 1), class: "nav-link active" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新着プラモデル", items_path(tab_no: 2), class: "nav-link" %>
+                </li>
+              </div>
+          <%= render 'public/items/index',items:@items,customer:@customer,comment:@comment %>
+              <div class="comments">
+              <p>投稿件数：<%= @item_amount %></p>
+              <table class="table">
+                <% @item.comments.each do |comment| %>
+                  <tr>
+                    <td><%= comment.customer.name %></td>
+                    <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></td>
+                <% end %>
+              </thead>
+              </table>
+            </div>
+      </div>
+  </div>
+  <% else %>
+<div class = "container">
+    <div class = "row">
+      <div class = "col-4 my-5 title" >
+        <% if @genre==0 %>
+          <h4 class = "" >プラモデル一覧</h4>
+        <% else %>
+          <h4><%= @genre.name %>一覧</h4>
+        <% end %>
+      </div>
+      <div class = "col-2 my-5" >
+        <p>(全<%= @item_amount %>件)</p>
+      </div>
+    </div>
+  </div>
+      <div class = "row" >
+        <% @items.each do |item|  %>
+          <div class="col-2 mx-3">
+            <div>
+              <%= attachment_image_tag item, :image, size: "180x120" %>
+            </div>
+            <p><%= item.name %></p>
+          </div>
+        <% end %>
+      </div>
+    <div class = "row" >
+      <div class = "my-5 mx-auto"><%= paginate @items %></div>
+    </div>
+  </div>
+  <% end %>

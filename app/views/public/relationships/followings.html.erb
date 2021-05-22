@@ -1,0 +1,23 @@
+<h2>フォロー</h2>
+<% if @customers.exists? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td>フォロー数: <%= customer.followings.count %></td>
+        <td>フォロワー数: <%= customer.followers.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

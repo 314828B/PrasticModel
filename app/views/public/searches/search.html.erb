@@ -1,0 +1,49 @@
+<h2>検索結果一覧</h2>
+<table class="table table-hover table-inverse">
+　<% if @range == '2' %>
+  <thead>
+    <tr>
+     <th></th>
+     <th>プラモデル名</th>
+     <th>プラモデル説明</th>
+     <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+     <% @item.each do |item| %>
+     <tr>
+      <td>
+       <%= link_to(item.customer) do %>
+       <%= attachment_image_tag item.customer, :image, size: "50x50" %>
+       <% end %>
+      </td>
+      <td>
+       <%= link_to item.name, item, class: "item_#{item.id}" %>
+      </td>
+      <td><%= item.introduction %></td>
+     </tr>
+     <% end %>
+  </tbody>
+
+  <% else %>
+  <thead>
+     <tr>
+      <th>プロフィール写真</th>
+      <th>アカウント名</th>
+      <th colspan="3"></th>
+     </tr>
+   </thead>
+
+   <tbody>
+    <% @customer.each do |customer| %>
+     <tr>
+      <td><%= attachment_image_tag customer, :image, size: "50x50" %></td>
+      <td><%= customer.name%></td>
+      <td><%= link_to "Show", customer, class: "customer_#{customer.id}" %></td>
+     </tr>
+    <% end %>
+   </tbody>
+   <% end %>
+ </table>

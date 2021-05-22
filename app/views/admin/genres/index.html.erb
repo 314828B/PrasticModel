@@ -1,0 +1,51 @@
+<div class = "error-box">
+<% if @genre.errors.any? %>
+  <h3 class = "error-message"><%= @genre.errors.count %> errors prohibited this obj from being saved:</h3>
+  <ul class = "error-message">
+    <% @genre.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<div class = "container">
+
+    <div class = "col-3 my-5 title" >
+      <h4>ジャンル一覧・追加</h4>
+    </div>
+
+      <%= form_with model: @genre, url: admin_genres_path, local:true do |f| %>
+
+      <table>
+        <tr>
+          <th><%= f.label :ジャンル名 %></th>
+          <td>&emsp;&emsp;<%= f.text_field :name %></td>
+          <td>&emsp;&emsp;<%= f.submit ' 新規登録  ', class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+    </div>
+      </table>
+
+      <br>
+
+    <table class = "table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th>ジャンル</th>
+          <td></td>
+        </tr>
+  　　</thead>
+      <tbody>
+        <tr>
+          <% @genres.each do |genre| %>
+        <tr>
+          <th><%= genre.name %></th>
+          <td><%= link_to "編集する", edit_admin_genre_path(genre), class: 'btn btn-success' %></td>
+        </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<% if customer_signed_in? %>
+<h2>会員情報</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>プロフィール画像</th>
+          <th><%= attachment_image_tag customer, :image, size: "50x50" %></th>
+        </tr>
+        <tr>
+          <th>名前</th>
+          <th><%= customer.name %></th>
+        </tr>
+        <tr>
+          <th> フォロー </th>
+          <th><%= link_to customer.followings.count, customer_followings_path(customer) %></th>
+        </tr>
+        <tr>
+          <th>フォローワー</th>
+          <th><%= link_to customer.followers.count, customer_followers_path(customer) %></th>
+        </tr>
+      </tbody>
+    </table>
+      <%= render "public/relationships/follow_button", customer:customer %><br>
+        <%= link_to edit_customer_path(customer.id),class:'btn btn-outline-secondary btn-block' do  %>
+    <i class='fas fa-user-cog'></i>
+      <% end %>
+    <% if item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(item.errors.count, "error") %> prohibited this book from being saved:</h2>
+        <ul>
+          <% item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+    </div>
+    <% end %>
+<h2 class="mt-3">新規投稿</h2>
+    <%= form_with model:item,url:items_path, local:true do |f| %>
+  <strong><p>プラモデル名</p></strong>
+    <%= f.text_field :name %>
+  <strong><p>プラモデル概要</p></strong>
+    <%= f.text_area :introduction %>
+    <strong><p>投稿写真</p></strong>
+    <%= f.attachment_field :image %><br>
+     <br><strong><p>ジャンル選択</p></strong>
+     <%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %><br>
+    
+    <br><p><%= f.submit "投稿する",class: 'btn btn-success' %></p>
+<% end %>
+<% end %>

@@ -1,0 +1,57 @@
+<p id="notice"></p>
+  <div class="container px-5 px-sm-0">
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= render 'public/customers/info',customer:@customer,item:@newitem %>
+        </div>
+        <div class="col-md-8 offset-md-1">
+  		    <h2>プラモデルの詳細</h2>
+  		      <table class="table">
+  		        <thead>
+  		          <tr>
+  		            <td><%= attachment_image_tag @customer, :image, size: "50x50" %><br>
+  		            &emsp;<%= link_to @customer.name, customer_path(@customer.id) %></td>
+  		            <td><%= link_to @item.name, item_path(@item.id) %></td>
+  		            <td><%= @item.introduction %></td>
+  		            <% if current_customer.id == @customer.id %>
+  		            <td><%= link_to"Edit", edit_item_path(@item.id),class:'btn btn-sm btn-success' %></td>
+  		            <td><%= link_to"Destroy" , item_path(@item.id), method: :delete, "data-confirm" =>"本当に消しますか？",class:'btn btn-sm btn-danger' %></td>
+  		            <% end %>
+  		           <td class =  <%= "item_favorite_#{@item.id}"  %> >
+  		             <%= render 'public/items/favorite', item:@item, customer:current_customer %>
+                </td>
+  		          </tr>
+  		        </thead>
+  		      </table>
+  		      <div class="comments">
+              <p>コメント件数：<%= @item.comments.count %></p>
+
+              <table class="comment_table table">
+               <%= render 'public/items/show', item:@item %>
+              </table>
+            </div>
+            <div class="new-comment">
+            <%= form_with model:@comment, url:  item_comments_path(@item),method: :post,local:true do |f| %>
+              <%= f.text_area :comment, rows:'10',placeholder: "コメントをここに" %>
+             <!-- 評価 -->
+                <div class="form-group row" id="star">
+                  <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+                  <%= f.hidden_field :rate, id: :review_star %>
+                </div>
+              <%= f.submit "送信する" %>
+            <% end %>
+            <script>
+              $('#star').raty({
+                size     : 30,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                scoreName: 'comment[rate]',
+                half: true,
+              });
+            </script>  
+            </div>
+        </div>
+      </div>
+  </div>
