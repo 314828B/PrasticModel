@@ -21,12 +21,12 @@
   		           <td class =  <%= "item_favorite_#{@item.id}"  %> >
   		             <%= render 'public/items/favorite', item:@item, customer:current_customer %>
                 </td>
+                <td><%=  link_to @item.image.url, 'data-lightbox': @item.image do %>
+                      <%= image_tag @item.image.url if @item.image? %>
+                    <% end %></td>
   		          </tr>
   		        </thead>
   		      </table>
-  		      <h4>プラモデル写真</h4>
-  		      <div><%= attachment_image_tag @item, :image, size: "400x400" %></div>
-  		      <div class="comments">
               <p>コメント件数：<%= @item.comments.count %></p>
 
               <table class="comment_table table">
