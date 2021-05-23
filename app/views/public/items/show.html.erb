@@ -21,9 +21,6 @@
   		           <td class =  <%= "item_favorite_#{@item.id}"  %> >
   		             <%= render 'public/items/favorite', item:@item, customer:current_customer %>
                 </td>
-                <td><%=  link_to @item.image.url, 'data-lightbox': @item.image do %>
-                      <%= image_tag @item.image.url if @item.image? %>
-                    <% end %></td>
   		          </tr>
   		        </thead>
   		      </table>
