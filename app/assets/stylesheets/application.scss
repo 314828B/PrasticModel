@@ -18,18 +18,5 @@
 @import "font-awesome";
 
 .test {
-  background-image: image-url("robert-stemler-VtMdZFGCWuI-unsplash.jpg");
-  background-size:  cover;
-  display        : inline-block;
-  color          : #999999;           /* 文字の色 */              /* 文字のサイズ */
-  letter-spacing : 4px;
-  text-shadow    :
-       1px  1px 0px #ffffff,
-      -1px  1px 0px #ffffff,
-       1px -1px 0px #ffffff,
-      -1px -1px 0px #ffffff,
-       1px  0px 0px #ffffff,
-       0px  1px 0px #ffffff,
-      -1px  0px 0px #ffffff,
-       0px -1px 0px #ffffff;
+  background-color :#CBFFD3;
 }
