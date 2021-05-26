@@ -11,8 +11,8 @@
   		        <thead>
   		          <tr>
   		            <td><%= attachment_image_tag @customer, :image, size: "50x50" %><br>
-  		            &emsp;<%= link_to @customer.name, customer_path(@customer.id) %></td>
-  		            <td><%= link_to @item.name, item_path(@item.id) %></td>
+  		            <%= link_to @customer.name, customer_path(@customer.id) %></td>
+  		            <td class="text-nowrap"><%= link_to @item.name, item_path(@item.id) %></td>
   		            <td><%= @item.introduction %></td>
   		            <% if current_customer.id == @customer.id %>
   		            <td><%= link_to"Edit", edit_item_path(@item.id),class:'btn btn-sm btn-success' %></td>
@@ -30,8 +30,12 @@
               <p>コメント件数：<%= @item.comments.count %></p>
 
               <table class="comment_table table">
-               <%= render 'public/items/show', item:@item %>
+               <%= render 'public/items/show', {comments: @comments, item: @item} %>
               </table>
+               <div class = "row" >
+                <div class = "my-5 mx-auto"><%= paginate @comments %></div>
+              </div>
+
             </div>
             <div class="new-comment">
             <%= form_with model:@comment, url:  item_comments_path(@item),method: :post,local:true do |f| %>

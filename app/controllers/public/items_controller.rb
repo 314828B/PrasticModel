@@ -9,7 +9,7 @@ class Public::ItemsController < ApplicationController
       else
         @items = Item.all.page(params[:page]).per(10)
     end
-    
+
     @item_amount = Item.count
     @item = Item.new
     @customer = current_customer
@@ -20,6 +20,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @comments = Comment.where(item_id:params[:id]).page(params[:page]).per(6)
     @newitem = Item.new
     @customer = @item.customer
     @comment = Comment.new
