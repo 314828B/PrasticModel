@@ -20,3 +20,4 @@
 //= require_tree .
 
 //= require jquery.raty.js
+

@@ -25,10 +25,7 @@
   		        </thead>
   		      </table>
   		      <h4>投稿されたプラモデル写真</h4>
-  		      
-            <%= link_to Refile.attachment_url(@item, :image), 'data-lightbox':"work_outs" do %>
-              <%= attachment_image_tag @item, :image, size: "250x250" %>
-            <% end %>
+              <%= attachment_image_tag @item, :image, size: "400x400" %>
             
   		      
   		      <div class="comments">
