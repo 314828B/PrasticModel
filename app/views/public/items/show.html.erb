@@ -5,12 +5,12 @@
         <div class="col-md-3">
           <%= render 'public/customers/info',customer:@customer,item:@newitem %>
         </div>
-        <div class="col-md-8 offset-md-1">
+        <div class="col-md-8">
   		    <h2>プラモデルの詳細</h2>
   		      <table class="table">
   		        <thead>
   		          <tr>
-  		            <td><%= attachment_image_tag @customer, :image, size: "50x50" %><br>
+  		            <td class="text-nowrap"><%= attachment_image_tag @customer, :image, size: "50x50" %><br>
   		            <%= link_to @customer.name, customer_path(@customer.id) %></td>
   		            <td class="text-nowrap"><%= link_to @item.name, item_path(@item.id) %></td>
   		            <td><%= @item.introduction %></td>

@@ -1,16 +1,16 @@
 <% comments.each do |comment| %>
       <tr>
-        <td>
+        <td class="text-nowrap">
             <%= comment.customer.name %>
         </td>
-        <td>
+        <td class="text-nowrap">
             <%= comment.created_at.strftime('%Y/%m/%d') %>
         </td>
         <td>
             <%= comment.comment %>
         </td>
         <!--星評価-->
-        <td>
+        <td class="text-nowrap">
             <div id="star-rate-<%= comment.id %>"></div>
             <script>
           $('#star-rate-<%= comment.id %>').raty({
@@ -22,11 +22,11 @@
             readOnly: true,
             score: <%= comment.rate %>,
           });
-          </script>  
+          </script>
         </td>
          <% if comment.customer == current_customer %>
             <div class="comment-delete">
-              <td>
+              <td class="text-nowrap">
                   <%= link_to "削除", item_comment_path(item, comment), method: :delete %>
               </td>
             </div>
