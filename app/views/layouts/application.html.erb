@@ -22,7 +22,7 @@
               <% if customer_signed_in? %>
 
                 <li class="nav-item">
-                 <p class="nav-link text-light">ようこそ<%= current_customer.name %>さん！</p>
+                 <p class="nav-link text-light">ようこそ&nbsp;&nbsp;&nbsp;<%= current_customer.name %>&nbsp;&nbsp;さん！</p>
                 </li>
                  <li class="nav-item">
                   <%= link_to "マイページ", customer_path(current_customer.id), class: 'nav-link text-light' %>
