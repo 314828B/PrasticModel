@@ -1,2 +1,33 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-5 my-5 title">
+      <h4>投稿プラモデル詳細</h4>
+    </div>
+  </div>
+</div>
+<div class = "img-container">
+  <div class = "row">
+    <div class = "col-xs-6" >
+      <%= attachment_image_tag @item, :image, size: "300x300" %>
+    </div>
+  </div>
+   <div class = "row" >
+    <div class = "offset-md-1">
+      <table class="table table-hover table-inverse">
+        <tr class = "">
+          <th>プラモデル名</th>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @item.genre.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

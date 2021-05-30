@@ -1,10 +1,9 @@
-<main>
-  <p id="notice"></p>
-    <div class="container">
-      <div class="row"></div>
-        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      		<h1>投稿編集</h1>
-      		<%= form_with model:@book, local:true do |f| %>
+<p id="notice"></p>
+  <div class="container">
+    <div class="row"></div>
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      	<h1>投稿編集</h1>
+      		<%= form_with model:@item, local:true do |f| %>
       		<% if @item.errors.any? %>
           		<div id="error_explanation">
           			<h2><%= pluralize(@item.errors.count, "error") %> 投稿を編集しました！</h2>
@@ -15,18 +14,22 @@
           			</ul>
           		</div>
           <% end %>
-                <h4>名前</h4>
-                  <%= f.text_field :name %><br>
-                <br><h4>プラモデル概要</h4>
-                	<%= f.text_area :introduction, rows:'10' %>
-                	<p>
+            
+              <%= form_with model:@item,url:items_path, local:true do |f| %>
+                <strong><p>プラモデル名</p></strong>
+              <%= f.text_field :name,placeholder: "名称をここに" %>
+                <strong><p>プラモデル概要</p></strong>
+              <%= f.text_area :introduction, rows:'6',placeholder: "概要をここに"%>
+                <strong><p>投稿写真</p></strong>
+              <%= f.attachment_field :image %><br>
+                <br><strong><p>ジャンル選択</p></strong>
+               <%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %><br>
                 		<br><%= f.submit "更新する",class: 'btn btn-success' %>
-                	</p>
           <% end %>
-                	<%= link_to"Show", item_path(@item.id) %>
+          <% end %>
+                	<%= link_to"詳細ページへ", item_path(@item.id) %>
                 	 |
-                	<%= link_to"Back", items_path %>
-        </div>
+                	<%= link_to"戻る", items_path %>
       </div>
-    </div
-</main>
+    </div>
+  </div>

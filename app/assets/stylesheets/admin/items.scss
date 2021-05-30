@@ -1,3 +1,9 @@
 // Place all the styles related to the admin::items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.img-container{
+  display:flex;/* flexbox */
+  justify-content:center; /* 水平方向 */
+  align-items: center; /* 垂直方向 */
+}

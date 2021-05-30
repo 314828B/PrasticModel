@@ -15,8 +15,8 @@
   		            <td class="text-nowrap"><%= link_to @item.name, item_path(@item.id) %></td>
   		            <td><%= @item.introduction %></td>
   		            <% if current_customer.id == @customer.id %>
-  		            <td><%= link_to"Edit", edit_item_path(@item.id),class:'btn btn-sm btn-success' %></td>
-  		            <td><%= link_to"Destroy" , item_path(@item.id), method: :delete, "data-confirm" =>"本当に消しますか？",class:'btn btn-sm btn-danger' %></td>
+  		            <td><%= link_to"編集", edit_item_path(@item.id),class:'btn btn-sm btn-success' %></td>
+  		            <td><%= link_to"削除" , item_path(@item.id), method: :delete, "data-confirm" =>"本当に消しますか？",class:'btn btn-sm btn-danger' %></td>
   		            <% end %>
   		           <td class =  <%= "item_favorite_#{@item.id}"  %> >
   		             <%= render 'public/items/favorite', item:@item, customer:current_customer %>

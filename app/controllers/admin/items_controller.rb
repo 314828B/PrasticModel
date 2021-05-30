@@ -35,11 +35,16 @@ class Admin::ItemsController < ApplicationController
         render :edit
     end
   end
+  
+  def destroy
+    @item.destroy
+    redirect_to admin_item_path
+  end
 
   private
 
   def item_params
-   params.require(:item).permit(:image, :name, :introduction, :genre_id,　:image)
+   params.require(:item).permit(:image, :name, :introduction, :genre_id, :image)
   end
 
 end

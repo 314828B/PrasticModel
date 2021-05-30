@@ -44,7 +44,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if  @item.update(item_params)
         flash[:notice] = "You have updated item successfully."
-        redirect_to admin_item_path(@item)
+        redirect_to item_path(@item)
     else
         render :edit
     end
